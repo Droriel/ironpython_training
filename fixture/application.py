@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
+from fixture.project import ProjectHelper
 from fixture.session import SessionHelper
 
 
@@ -17,6 +18,7 @@ class Application:
         # self.wd.implicitly_wait(5)
         # w tej aplikacji nie ma potrzeby - czeka zadaną ilość sekund na pojawienie się elementu
         self.session = SessionHelper(self)
+        self.project = ProjectHelper(self)
         self.base_url = base_url
 
     def is_valid(self):
