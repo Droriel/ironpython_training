@@ -3,8 +3,10 @@ from re import sub
 from selenium.webdriver.support.wait import WebDriverWait
 from model.project import Project
 
+
 def delete_break_line(s):
     return sub("\n", ' ', s)
+
 
 def test_add_project(app, db, json_projects):
     app.project.open_create_page()
@@ -27,7 +29,8 @@ def test_add_project(app, db, json_projects):
     # assert sorted(old_projects, key=Project.lower_name) == sorted(new_projects, key=Project.lower_name)
     print(old_projects)
     print(new_projects)
-    assert sorted(old_projects, key=Project.get_name) == sorted(new_projects, key=Project.get_name)
+    # assert sorted(old_projects, key=Project.get_name) == sorted(new_projects, key=Project.get_name)
+    assert sorted(old_projects, key=lambda x: x.name) == sorted(new_projects, key=lambda x: x.name)
     # assert old_projects == new_projects
 
 

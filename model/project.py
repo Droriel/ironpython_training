@@ -20,7 +20,7 @@ class Project:
     def __eq__(self, other):
         return (self.name == other.name
                 and delete_break_line(self.description) == delete_break_line(other.description)
-                # and self.inherit_categories == other.inherit_categories
+                and self.inherit_categories == other.inherit_categories
                 # and self.view_status == other.view_status
                 )
 

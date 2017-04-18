@@ -9,7 +9,7 @@ from model.project import Project
 # from model.contact import ContactAllData, ContactBaseData, PhoneNumbers
 
 def delete_break_line(s):
-    return sub("\n", ' ', s)
+    return sub("\r", '', sub("\n", ' ', s))
 
 class DbFixture:
 
