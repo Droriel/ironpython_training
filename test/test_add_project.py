@@ -1,4 +1,7 @@
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
 from test_adds import adjustement
 # from model.project import Project
 
@@ -11,9 +14,11 @@ def test_add_project(app, db, json_projects):
                                   description=project.description)
     app.project.submit_project()
     wait = WebDriverWait(app.wd, 10)
+    wait.until(EC.invisibility_of_element_located((By.XPATH, "//a[contains(.,'Manage Users')]")))
     if len(app.wd.find_elements_by_xpath("//td[contains(.,'APPLICATION ERROR #701')]"))>0:
         raise Exception('ErrorExistAready', 'Project already exist')
     elif len(app.wd.find_elements_by_xpath("//td[contains(.,'APPLICATION ERROR #701')]"))==0:
+        wait = WebDriverWait(app.wd, 10)
         wait.until(lambda d: d.find_element_by_link_text("Proceed"))
         app.wd.find_element_by_link_text("Proceed").click()
         wait.until(lambda d: d.find_element_by_xpath("//input[@value='Create New Project']"))
