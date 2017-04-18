@@ -63,13 +63,13 @@ class ProjectHelper:
         elif status == 70:
             wd.find_element_by_xpath("//select[@name='status']/option[@value='70']").click()
 
-    def fill_inherit_global_categories(self, inherit_categories=True):
+    def fill_inherit_global_categories(self, inherit_categories=1):
         wd = self.app.wd
-        if inherit_categories == False:
-            if wd.find_element_by_name('inherit_global') == True:
+        if inherit_categories == 0:
+            if wd.find_element_by_name('inherit_global').is_selected():
                 wd.find_element_by_name('inherit_global').click()
-        elif inherit_categories == True or inherit_categories is None:
-            if wd.find_element_by_name('inherit_global') == False:
+        elif inherit_categories == 1 or inherit_categories is None:
+            if not wd.find_element_by_name('inherit_global').is_selected():
                 wd.find_element_by_name('inherit_global').click()
 
     def fill_view_status(self, view_status):

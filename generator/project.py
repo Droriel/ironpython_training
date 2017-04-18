@@ -37,15 +37,15 @@ def random_string_without_breaklines(prefix, maxlen):
 
 
 testData = [Project(name=random_string_without_breaklines("Nazwa ", 10), status='', inherit_categories='', view_status='', description='')] + \
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=10, inherit_categories=False, view_status=10, description=random_string("Opis: ", 10))] +\
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=10, inherit_categories=True, view_status=50, description=random_string("Opis: ", 20))] +\
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=30, inherit_categories=False, view_status=10, description=random_string("Opis: ", 10))] +\
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=30, inherit_categories=True, view_status=50, description=random_string("Opis: ", 20))] +\
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=50, inherit_categories=False, view_status=10, description=random_string("Opis: ", 20))] +\
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=50, inherit_categories=True, view_status=50, description=random_string("Opis: ", 10))] +\
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=70, inherit_categories=False, view_status=10, description=random_string("Opis: ", 20))] +\
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=70, inherit_categories=True, view_status=50, description=random_string("Opis: ", 10))] +\
-[Project(name=random_string_without_breaklines("Nazwa ", 10), status=70, inherit_categories=False, view_status=50, description='')]
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=10, inherit_categories=0, view_status=10, description=random_string("Opis: ", 10))] +\
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=10, inherit_categories=1, view_status=50, description=random_string("Opis: ", 20))] +\
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=30, inherit_categories=0, view_status=10, description=random_string("Opis: ", 10))] +\
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=30, inherit_categories=1, view_status=50, description=random_string("Opis: ", 20))] +\
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=50, inherit_categories=0, view_status=10, description=random_string("Opis: ", 20))] +\
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=50, inherit_categories=1, view_status=50, description=random_string("Opis: ", 10))] +\
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=70, inherit_categories=0, view_status=10, description=random_string("Opis: ", 20))] +\
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=70, inherit_categories=1, view_status=50, description=random_string("Opis: ", 10))] +\
+[Project(name=random_string_without_breaklines("Nazwa ", 10), status=70, inherit_categories=0, view_status=50, description='')]
 
 
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..' , f)
