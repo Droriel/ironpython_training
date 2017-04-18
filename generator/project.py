@@ -32,11 +32,11 @@ def random_string(prefix, maxlen):
 
 def random_string_without_breaklines(prefix, maxlen):
     # symbols = string.ascii_letters + string.digits + string.punctuation + ' '*10
-    symbols = string.ascii_letters + string.digits + ' ' * 15 + '-' * 3 + '_' * 3
+    symbols = string.ascii_letters + string.digits + ' ' * 10 + '-' * 3 + '_' * 3
     return prefix + ''.join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
 
-testData = [Project(name=random_string_without_breaklines("Nazwa ", 10), status='', inherit_categories='', view_status='', description='')] + \
+testData = [Project(name=random_string_without_breaklines("Nazwa ", 10), status=10, inherit_categories=1, view_status=10, description='')] + \
 [Project(name=random_string_without_breaklines("Nazwa ", 10), status=10, inherit_categories=0, view_status=10, description=random_string("Opis: ", 10))] +\
 [Project(name=random_string_without_breaklines("Nazwa ", 10), status=10, inherit_categories=1, view_status=50, description=random_string("Opis: ", 20))] +\
 [Project(name=random_string_without_breaklines("Nazwa ", 10), status=30, inherit_categories=0, view_status=10, description=random_string("Opis: ", 10))] +\

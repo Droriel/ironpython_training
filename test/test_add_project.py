@@ -1,11 +1,6 @@
-from re import sub
-
 from selenium.webdriver.support.wait import WebDriverWait
-from model.project import Project
-
-
-def delete_break_line(s):
-    return sub("\n", ' ', s)
+from test_adds import adjustement
+# from model.project import Project
 
 
 def test_add_project(app, db, json_projects):
@@ -16,22 +11,19 @@ def test_add_project(app, db, json_projects):
                                   description=project.description)
     app.project.submit_project()
     wait = WebDriverWait(app.wd, 10)
-    # wait.until(lambda d: d.find_element_by_xpath("//input[@value='Create New Project']"))
-    wait.until(lambda d: d.find_element_by_link_text("Proceed"))
-    app.wd.find_element_by_link_text("Proceed").click()
-    wait.until(lambda d: d.find_element_by_xpath("//input[@value='Create New Project']"))
-    assert app.wd.find_element_by_link_text("%s" % project.name)
-    new_projects = db.get_project_list()
-    assert len(old_projects) +1 == len(new_projects)
-    project.description = delete_break_line(project.description)
-    old_projects.append(project)
-    # assert sorted(old_projects, key=Project.name) == sorted(new_projects, key=Project.name)
-    # assert sorted(old_projects, key=Project.lower_name) == sorted(new_projects, key=Project.lower_name)
-    print(old_projects)
-    print(new_projects)
-    # assert sorted(old_projects, key=Project.get_name) == sorted(new_projects, key=Project.get_name)
-    assert sorted(old_projects, key=lambda x: x.name) == sorted(new_projects, key=lambda x: x.name)
-    # assert old_projects == new_projects
+    if len(app.wd.find_elements_by_xpath("//td[contains(.,'APPLICATION ERROR #701')]"))>0:
+        raise Exception('ErrorExistAready', 'Project already exist')
+    elif len(app.wd.find_elements_by_xpath("//td[contains(.,'APPLICATION ERROR #701')]"))==0:
+        wait.until(lambda d: d.find_element_by_link_text("Proceed"))
+        app.wd.find_element_by_link_text("Proceed").click()
+        wait.until(lambda d: d.find_element_by_xpath("//input[@value='Create New Project']"))
+        link_name = adjustement.clear_multiple_spaces(project.name.strip())
+        assert app.wd.find_element_by_link_text("%s" % link_name)
+        new_projects = db.get_project_list()
+        assert len(old_projects) +1 == len(new_projects)
+        old_projects.append(project)
+        # assert sorted(old_projects, key=Project.get_name) == sorted(new_projects, key=Project.get_name)
+        assert sorted(old_projects, key=lambda x: x.name) == sorted(new_projects, key=lambda x: x.name)
 
 
 def test_add_existing_project(app, db):
@@ -49,5 +41,4 @@ def test_add_existing_project(app, db):
     assert old_projects == new_projects
 
 
-# def test_empty_project_name(app):
-# def test_directly after login
+
